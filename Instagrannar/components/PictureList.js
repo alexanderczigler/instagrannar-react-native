@@ -1,5 +1,8 @@
-var React = require('react-native');
-var Hashtag = require('./Hashtag');
+var React           = require('react-native');
+var Hashtag         = require('./Hashtag');
+var Dimensions      = require('Dimensions');
+var moment = require('moment');
+var {width, height} = Dimensions.get('window');
 
 var {
   Image,
@@ -73,19 +76,29 @@ module.exports = React.createClass({
     return '';
   },
 
+  _calculateTime: function (timestamp) {
+    return moment(parseInt(timestamp * 1000, 10)).toNow(true);
+  },
+
   renderPicture: function (picture) {
     //var picture = this.props.picture;
 
+    console.log(picture);
+
     return (
-      <TouchableHighlight activeOpacity={0.8} onPress={this.setSinglePicture}>
+      <TouchableHighlight activeOpacity={1} onPress={this.setSinglePicture}>
         <View style={styles.container}>
-          <Image source={{uri: picture.images.thumbnail.url}} style={styles.thumbnail} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>@{picture.user.username}</Text>
-            <Text style={styles.caption}>{this.wrapCaption(picture.caption)}</Text>
+          <Image
+              source={{uri: picture.images.standard_resolution.url}} style={styles.thumbnail} />
+          <View style={styles.userTime}>
+            <Image
+                source={{uri: picture.user.profile_picture}}
+                style={styles.profilePicture} />
+            <Text style={styles.title}>{picture.user.username}</Text>
+            <Text style={styles.ts}>{this._calculateTime(picture.created_time)}</Text>
           </View>
-          <View style={styles.actionContainer}>
-            <Text style={styles.ts}>4 m</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.caption}>{this.wrapCaption(picture.caption)}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -96,44 +109,60 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-    backgroundColor: '#000',
-    marginTop: 0
+    marginTop: 0,
+    marginBottom: 10,
+    position: 'relative'
   },
   textContainer: {
     flex: 1,
-    alignItems: 'stretch'
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 5,
+    width: width
   },
   actionContainer: {
-    flex: 1
+    flex: 1,
+  },
+  profilePicture: {
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    borderWidth: 3,
+    borderColor: '#fff'
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
-    paddingLeft: 8,
-    color: '#efefef'
+    flex: 1,
+    color: '#444f5a',
+    paddingLeft: 10
+  },
+  userTime: {
+    marginTop: -8,
+    alignItems: 'center',
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'row',
   },
   ts: {
-    fontSize: 10,
+    fontSize: 14,
     paddingRight: 8,
-    color: '#aaa',
-    alignSelf: 'flex-end'
+    color: '#999',
+    textAlign: 'right'
   },
   caption: {
-    fontSize: 12,
+    fontSize: 14,
     paddingLeft: 8,
-    color: '#ccc'
+    color: '#444f5a'
   },
   thumbnail: {
-    width: 90,
-    height: 90,
+    width: width,
+    height: width,
   },
   listView: {
     flex: 1,
     paddingTop: 0,
     marginTop: 0,
-    backgroundColor: '#F5FCFF',
   },
 });

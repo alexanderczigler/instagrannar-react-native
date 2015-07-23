@@ -46,11 +46,11 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
     toolbar:{
-        backgroundColor: '#000',
+        backgroundColor: '#444f5a',
         paddingTop: 30,
         paddingBottom: 10,
         marginBottom: 0,
-        flexDirection:'row'
+        flexDirection:'row',
     },
     toolbarButton:{
         width: 65,
@@ -66,8 +66,6 @@ var styles = StyleSheet.create({
     pictureList: {
       flexDirection:'row',
       height: 388,
-      marginTop: 1,
-      marginBottom: 1
     },
     map: {
       flexDirection:'row',
