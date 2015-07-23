@@ -196,11 +196,4 @@ var styles = StyleSheet.create({
   }
 });
 
-function _ix_DEPRECATED(imageUri) {
-  return {
-    uri: imageUri,
-    isStatic: true,
-  };
-}
-
 AppRegistry.registerComponent('Instagrannar', () => Instagrannar);

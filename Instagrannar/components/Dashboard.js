@@ -46,25 +46,28 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
     toolbar:{
-        backgroundColor:'#07afca',
-        paddingTop:30,
-        paddingBottom:10,
+        backgroundColor: '#000',
+        paddingTop: 30,
+        paddingBottom: 10,
+        marginBottom: 0,
         flexDirection:'row'
     },
     toolbarButton:{
         width: 65,
-        color:'#ffffff',
+        color:'#fff',
         textAlign:'center'
     },
     toolbarTitle:{
-        color:'#ffffff',
+        color:'#fff',
         textAlign:'center',
         fontWeight:'bold',
         flex:1
     },
     pictureList: {
       flexDirection:'row',
-      height: 380
+      height: 388,
+      marginTop: 1,
+      marginBottom: 1
     },
     map: {
       flexDirection:'row',

@@ -91,7 +91,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#101010',
+    backgroundColor: '#000',
     marginTop: 0
   },
   rightContainer: {
