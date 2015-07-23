@@ -136,48 +136,7 @@ var Instagrannar = React.createClass({
     }
 
     return (
-      <Dashboard></Dashboard>
-      /*
-      <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarItemIOS
-          name='mapTab'
-          title='Karta'
-          icon={{}}
-          selected={this.state.selectedTab === 'mapTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'mapTab',
-            });
-          }}>
-        {this.renderMap()}
-        </TabBarItemIOS>
-        <TabBarItemIOS
-          name='pictureTab'
-          title='Bilder'
-          icon={{}}
-          selected={this.state.selectedTab === 'pictureTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'pictureTab',
-              selectedPicture: {}
-            });
-          }}>
-        {this.renderPictureList()}
-        </TabBarItemIOS>
-        <TabBarItemIOS
-          name='profileTab'
-          title='Profil'
-          icon={{}}
-          selected={this.state.selectedTab === 'profileTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'profileTab',
-            });
-          }}>
-          {this.renderProfileView()}
-        </TabBarItemIOS>
-      </TabBarIOS>
-      */
+      <Dashboard/>
     );
   },
 
