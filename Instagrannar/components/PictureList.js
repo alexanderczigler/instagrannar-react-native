@@ -10,15 +10,57 @@ var {
   View,
 } = React;
 
+var API_URL = 'http://instagrannar.se:3000/pictures?lng={lng}&lat={lat}&dst=350&max_ts=&min_ts=/-';
+
 module.exports = React.createClass({
+
+  getInitialState: function() {
+    return {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
+      loaded: false,
+      selectedPicture: {}
+    };
+  },
+
+  componentDidMount: function() {
+    var lng = 18.05935107885739;
+    var lat = 59.33640477604537;
+    this.fetchData(lat, lng);
+  },
+
+  fetchData: function(lat, lng) {
+    var url = API_URL;
+    url = url.replace('{lng}', lng);
+    url = url.replace('{lat}', lat);
+    fetch(url)
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(responseData.data),
+          loaded: true,
+        });
+      })
+      .done();
+  },
+
   setSinglePicture: function () {
     this.props.setSinglePicture(this.props.picture);
+  },
+
+  setSinglePicture: function (picture: Object) {
+    console.log(picture);
+    this.setState({
+      selectedTab: 'pictureTab',
+      selectedPicture: picture
+    });
   },
 
   render: function () {
     return (
       <ListView
-        dataSource={this.props.dataSource}
+        dataSource={this.state.dataSource}
         renderRow={this.renderPicture}
         style={styles.listView}/>
     );
@@ -49,18 +91,21 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#101010',
+    marginTop: 0
   },
   rightContainer: {
-    flex: 1,
+    flex: 1
   },
   title: {
     fontSize: 20,
     marginBottom: 8,
     textAlign: 'center',
+    color: '#efefef'
   },
   year: {
     textAlign: 'center',
+    color: '#efefef'
   },
   thumbnail: {
     width: 90,
@@ -68,7 +113,8 @@ var styles = StyleSheet.create({
   },
   listView: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 0,
+    marginTop: 0,
     backgroundColor: '#F5FCFF',
   },
 });
