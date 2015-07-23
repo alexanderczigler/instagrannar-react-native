@@ -15,7 +15,7 @@ var screenWidth = Dimensions.get('window').width;
 
 module.exports = React.createClass({
   render: function () {
-    var picture = this.props;
+    var picture = this.props.picture;
 
     var tags = picture.tags.map(function (tag, i) {
       return <Hashtag key={i} tag={tag} />;
@@ -42,9 +42,8 @@ module.exports = React.createClass({
 
 var styles = StyleSheet.create({
   singlePicture: {
-    backgroundColor: '#ffffff',
-    flex: 1,
-    marginTop: 20,
+    backgroundColor: '#000',
+    flex: 1
   },
   content: {
     padding: 20

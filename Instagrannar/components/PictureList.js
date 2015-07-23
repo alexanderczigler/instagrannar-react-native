@@ -1,5 +1,6 @@
 var React = require('react-native');
 var Hashtag = require('./Hashtag');
+var SinglePicture = require('./SinglePicture');
 
 var {
   Image,
@@ -45,24 +46,24 @@ module.exports = React.createClass({
       .done();
   },
 
-  setSinglePicture: function () {
-    this.props.setSinglePicture(this.props.picture);
-  },
-
-  setSinglePicture: function (picture: Object) {
-    console.log(picture);
+  setSinglePicture: function (picture) {
+    console.log('pic', picture);
     this.setState({
-      selectedTab: 'pictureTab',
       selectedPicture: picture
     });
   },
 
   render: function () {
+    if (this.state.selectedPicture.id === undefined) {
+      return (
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderPicture}
+          style={styles.listView}/>
+      );
+    }
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderPicture}
-        style={styles.listView}/>
+      <SinglePicture picture={this.state.selectedPicture} />
     );
   },
 
@@ -74,10 +75,16 @@ module.exports = React.createClass({
   },
 
   renderPicture: function (picture) {
-    //var picture = this.props.picture;
+
+    var s = this.setSinglePicture;
+
+    var meow = function () {
+      console.log('p', picture, self.state, this.state, s);
+      s(picture);
+    }
 
     return (
-      <TouchableHighlight activeOpacity={0.8} onPress={this.setSinglePicture}>
+      <TouchableHighlight activeOpacity={0.8} onPress={meow}>
         <View style={styles.container}>
           <Image source={{uri: picture.images.thumbnail.url}} style={styles.thumbnail} />
           <View style={styles.textContainer}>
