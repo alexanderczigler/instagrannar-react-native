@@ -4,6 +4,8 @@ var React = require('react-native');
 var SinglePicture = require('./components/SinglePicture');
 var PictureList = require('./components/PictureList');
 
+var Dashboard = require('./components/Dashboard');
+
 var {
   AppRegistry,
   StyleSheet,
@@ -134,6 +136,8 @@ var Instagrannar = React.createClass({
     }
 
     return (
+      <Dashboard></Dashboard>
+      /*
       <TabBarIOS selectedTab={this.state.selectedTab}>
         <TabBarItemIOS
           name='mapTab'
@@ -173,6 +177,7 @@ var Instagrannar = React.createClass({
           {this.renderProfileView()}
         </TabBarItemIOS>
       </TabBarIOS>
+      */
     );
   },
 

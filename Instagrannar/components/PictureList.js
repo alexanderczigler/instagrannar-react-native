@@ -6,6 +6,7 @@ var {
   StyleSheet,
   Text,
   TouchableHighlight,
+  ListView,
   View,
 } = React;
 
@@ -15,7 +16,16 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    var picture = this.props.picture;
+    return (
+      <ListView
+        dataSource={this.props.dataSource}
+        renderRow={this.renderPicture}
+        style={styles.listView}/>
+    );
+  },
+
+  renderPicture: function (picture) {
+    //var picture = this.props.picture;
 
     return (
       <TouchableHighlight activeOpacity={0.8} onPress={this.setSinglePicture}>
