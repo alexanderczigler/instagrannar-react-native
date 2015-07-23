@@ -2,6 +2,7 @@ var React           = require('react-native');
 var Hashtag         = require('./Hashtag');
 var Dimensions      = require('Dimensions');
 var SinglePicture   = require('./SinglePicture');
+var LocationStore   = require('../stores/LocationStore');
 var moment          = require('moment');
 var {width, height} = Dimensions.get('window');
 
@@ -28,10 +29,19 @@ module.exports = React.createClass({
     };
   },
 
+  _changePosition: function(l) {
+    this.fetchData(l.location.latitude, l.location.longitude);
+  },
+
   componentDidMount: function() {
+    LocationStore.listen(this._changePosition);
     var lng = 18.05935107885739;
     var lat = 59.33640477604537;
     this.fetchData(lat, lng);
+  },
+
+  componentWillUnmount: function () {
+    LocationStore.unlisten(this._changePosition);
   },
 
   fetchData: function(lat, lng) {
