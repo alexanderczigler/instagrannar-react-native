@@ -66,18 +66,26 @@ module.exports = React.createClass({
     );
   },
 
+  wrapCaption: function (caption) {
+    if (caption != null) {
+      return caption.text.substring(0, 50);
+    }
+    return '';
+  },
+
   renderPicture: function (picture) {
     //var picture = this.props.picture;
 
     return (
       <TouchableHighlight activeOpacity={0.8} onPress={this.setSinglePicture}>
         <View style={styles.container}>
-          <Image
-            source={{uri: picture.images.thumbnail.url}}
-            style={styles.thumbnail} />
-          <View style={styles.rightContainer}>
+          <Image source={{uri: picture.images.thumbnail.url}} style={styles.thumbnail} />
+          <View style={styles.textContainer}>
             <Text style={styles.title}>@{picture.user.username}</Text>
-            <Text style={styles.year}>Filter: {picture.filter}</Text>
+            <Text style={styles.caption}>{this.wrapCaption(picture.caption)}</Text>
+          </View>
+          <View style={styles.actionContainer}>
+            <Text style={styles.ts}>4 m</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -89,23 +97,34 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
     backgroundColor: '#000',
     marginTop: 0
   },
-  rightContainer: {
+  textContainer: {
+    flex: 1,
+    alignItems: 'stretch'
+  },
+  actionContainer: {
     flex: 1
   },
   title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+    paddingLeft: 8,
     color: '#efefef'
   },
-  year: {
-    textAlign: 'center',
-    color: '#efefef'
+  ts: {
+    fontSize: 10,
+    paddingRight: 8,
+    color: '#aaa',
+    alignSelf: 'flex-end'
+  },
+  caption: {
+    fontSize: 12,
+    paddingLeft: 8,
+    color: '#ccc'
   },
   thumbnail: {
     width: 90,
