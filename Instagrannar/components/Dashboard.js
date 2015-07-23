@@ -53,23 +53,21 @@ var styles = StyleSheet.create({
     },
     toolbarButton:{
         width: 65,
-        color:'#fff',
+        color:'#ffffff',
         textAlign:'center'
     },
     toolbarTitle:{
-        color:'#fff',
+        color:'#ffffff',
         textAlign:'center',
         fontWeight:'bold',
         flex:1
     },
     pictureList: {
       flexDirection:'row',
-      height: 250,
-      marginTop: 0
+      height: 380
     },
     map: {
       flexDirection:'row',
-      height: 250,
-      marginTop: 0
+      height: 220
     }
 });

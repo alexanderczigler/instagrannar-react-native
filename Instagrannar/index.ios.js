@@ -80,7 +80,7 @@ var Instagrannar = React.createClass({
   renderLoadingView: function() {
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.loadingText}>
           Instagrannar
         </Text>
       </View>
@@ -189,8 +189,11 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#07afca'
   },
+  loadingText: {
+    color: '#ffffff'
+  }
 });
 
 function _ix_DEPRECATED(imageUri) {
