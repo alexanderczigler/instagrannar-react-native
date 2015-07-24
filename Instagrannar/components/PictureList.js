@@ -59,7 +59,7 @@ module.exports = React.createClass({
       .done();
   },
 
-  setSinglePicture: function (picture) {
+  _onPicturePress: function (picture) {
     console.log('pic', picture);
     this.setState({
       selectedPicture: picture
@@ -82,7 +82,7 @@ module.exports = React.createClass({
 
   wrapCaption: function (caption) {
     if (caption != null) {
-      return caption.text.substring(0, 50);
+      return caption.text;
     }
     return '';
   },
@@ -93,17 +93,13 @@ module.exports = React.createClass({
 
   renderPicture: function (picture) {
 
-    var s = this.setSinglePicture;
-
-    var meow = function () {
-      console.log('p', picture, self.state, this.state, s);
-      s(picture);
+    var _onPicturePress = this._onPicturePress;
+    var onPicturePress = function () {
+      _onPicturePress(picture);
     }
 
-    console.log(picture);
-
     return (
-      <TouchableHighlight activeOpacity={0.8} onPress={meow}>
+      <TouchableHighlight activeOpacity={0.8} onPress={onPicturePress}>
         <View style={styles.container}>
           <Image
               source={{uri: picture.images.standard_resolution.url}} style={styles.thumbnail} />
