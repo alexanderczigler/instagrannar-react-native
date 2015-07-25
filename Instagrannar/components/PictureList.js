@@ -1,10 +1,11 @@
-var React           = require('react-native');
-var Hashtag         = require('./Hashtag');
-var Dimensions      = require('Dimensions');
-var SinglePicture   = require('./SinglePicture');
-var LocationStore   = require('../stores/LocationStore');
-var moment          = require('moment');
-var {width, height} = Dimensions.get('window');
+var React             = require('react-native');
+var Hashtag           = require('./Hashtag');
+var Dimensions        = require('Dimensions');
+var SinglePicture     = require('./SinglePicture');
+var LoadingIndicator  = require('./LoadingIndicator');
+var LocationStore     = require('../stores/LocationStore');
+var moment            = require('moment');
+var {width, height}   = Dimensions.get('window');
 
 var {
   Image,
@@ -30,11 +31,7 @@ module.exports = React.createClass({
   },
 
   _changePosition: function(l) {
-    this.setState({
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      })
-    });
+    this.setState(this.getInitialState());
     this.fetchData(l.location.latitude, l.location.longitude);
   },
 
@@ -65,14 +62,13 @@ module.exports = React.createClass({
   },
 
   _onPicturePress: function (picture) {
-    console.log('pic', picture);
     this.setState({
       selectedPicture: picture
     });
   },
 
   render: function () {
-    if (this.state.selectedPicture.id === undefined) {
+    if (this.state.loaded) {
       return (
         <ListView
           dataSource={this.state.dataSource}
@@ -81,9 +77,11 @@ module.exports = React.createClass({
           />
       );
     }
-    return (
-      <SinglePicture picture={this.state.selectedPicture} />
-    );
+    else {
+      return (
+        <LoadingIndicator />
+      );
+    }
   },
 
   wrapCaption: function (caption) {
@@ -184,4 +182,8 @@ var styles = StyleSheet.create({
     paddingTop: 0,
     marginTop: 0,
   },
+  loadingText: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  }
 });
