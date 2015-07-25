@@ -4,28 +4,14 @@ var Map = require('./Map');
 var PictureList = require('./PictureList');
 
 var {
-  StyleSheet,
   Text,
-  ListView,
   View,
-  Component
+  StyleSheet
 } = React;
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
-    return {
-      selectedTab: 'mapTab',
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      loaded: false,
-      selectedPicture: {}
-    };
-  },
-
   render: function() {
-
     return (
       <View>
         <View style={styles.toolbar}>
@@ -33,11 +19,11 @@ module.exports = React.createClass({
           <Text style={styles.toolbarTitle}>Instagrannar</Text>
           <Text style={styles.toolbarButton}>Search</Text>
         </View>
-        <View style={styles.pictureList}>
-          <PictureList dataSource={this.state.dataSource}></PictureList>
+        <View style={styles.pictureListContainer}>
+          <PictureList />
         </View>
-        <View style={styles.map}>
-          <Map></Map>
+        <View style={styles.mapContainer}>
+          <Map />
         </View>
       </View>
     );
@@ -45,7 +31,7 @@ module.exports = React.createClass({
 });
 
 var styles = StyleSheet.create({
-    toolbar:{
+    toolbar: {
         backgroundColor: '#444f5a',
         paddingTop: 30,
         paddingBottom: 10,
@@ -63,11 +49,11 @@ var styles = StyleSheet.create({
         fontWeight:'bold',
         flex:1
     },
-    pictureList: {
+    pictureListContainer: {
       flexDirection:'row',
       height: 388,
     },
-    map: {
+    mapContainer: {
       flexDirection:'row',
       height: 220
     }
