@@ -30,6 +30,11 @@ module.exports = React.createClass({
   },
 
   _changePosition: function(l) {
+    this.setState({
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      })
+    });
     this.fetchData(l.location.latitude, l.location.longitude);
   },
 
