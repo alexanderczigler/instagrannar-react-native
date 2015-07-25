@@ -72,7 +72,8 @@ module.exports = React.createClass({
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderPicture}
-          style={styles.listView}/>
+          style={styles.listView}
+          />
       );
     }
     return (
