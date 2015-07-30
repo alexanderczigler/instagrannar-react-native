@@ -25,7 +25,7 @@ var styles = StyleSheet.create({
     flex: 1
   },
   loadingText: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center'
   }
