@@ -2,6 +2,7 @@ var React             = require('react-native');
 
 var LocationStore     = require('../stores/LocationStore');
 var PictureListRow    = require('./PictureListRow');
+var Message           = require('./Message');
 var LoadingIndicator  = require('./LoadingIndicator');
 
 var {
@@ -47,7 +48,15 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    console.log('DAS DATA', this.state.dataSource._cachedRowCount);
     if (this.state.loaded) {
+      if (this.state.dataSource._cachedRowCount == 0) {
+        var header = 'Nothing found';
+        var body = 'Trying changing the zoom or moving the map to another location.';
+        return (
+          <Message header={header} body={body} />
+        );
+      }
       return (
         <ListView
           dataSource={this.state.dataSource}
