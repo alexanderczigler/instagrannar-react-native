@@ -7,10 +7,18 @@ var {
   MapView
 } = React;
 
+var __TimeoutId = 0;
+
 module.exports = React.createClass({
 
   _regionChange: function(r) {
-    LocationActions.set(r);
+    if (__TimeoutId > 0) {
+      clearTimeout(__TimeoutId);
+    }
+    __TimeoutId = setTimeout(function () {
+      LocationActions.set(r);
+      __TimeoutId = 0;
+    }, 1500);
   },
 
   render: function() {
