@@ -48,7 +48,6 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    console.log('DAS DATA', this.state.dataSource._cachedRowCount);
     if (this.state.loaded) {
       if (this.state.dataSource._cachedRowCount == 0) {
         var header = 'Nothing found';
