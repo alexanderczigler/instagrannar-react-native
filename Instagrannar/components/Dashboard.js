@@ -15,7 +15,7 @@ module.exports = React.createClass({
     return (
       <View>
         <View style={styles.toolbar}>
-          <Text style={styles.toolbarButton}>Settings</Text>
+          <Text style={styles.toolbarButton}></Text>
           <Text style={styles.toolbarTitle}>Instagrannar</Text>
           <Text style={styles.toolbarButton}>Search</Text>
         </View>
