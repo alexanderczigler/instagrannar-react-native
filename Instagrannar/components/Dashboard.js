@@ -14,17 +14,35 @@ module.exports = React.createClass({
   render: function() {
     return (
       <View>
-        <View style={styles.toolbar}>
-          <Text style={styles.toolbarButton}></Text>
-          <Text style={styles.toolbarTitle}>Instagrannar</Text>
-          <Text style={styles.toolbarButton}>Search</Text>
-        </View>
-        <View style={styles.pictureListContainer}>
-          <PictureList />
-        </View>
-        <View style={styles.mapContainer}>
-          <Map />
-        </View>
+        {this._renderToolbar()}
+        {this._renderPictureListView()}
+        {this._renderMapContainer()}
+      </View>
+    );
+  },
+
+  _renderToolbar: function() {
+    return (
+      <View style={styles.toolbar}>
+        <Text style={styles.toolbarButton}></Text>
+        <Text style={styles.toolbarTitle}>Instagrannar</Text>
+        <Text style={styles.toolbarButton}>Search</Text>
+      </View>
+    );
+  },
+
+  _renderPictureListView: function() {
+    return (
+      <View style={styles.pictureListContainer}>
+        <PictureList />
+      </View>
+    );
+  },
+
+  _renderMapContainer: function() {
+    return (
+      <View style={styles.mapContainer}>
+        <Map />
       </View>
     );
   }
