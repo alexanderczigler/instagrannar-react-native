@@ -1,6 +1,7 @@
 var React = require('react-native');
 
 var Map = require('./Map');
+var Toolbar = require('./Toolbar');
 var PictureList = require('./PictureList');
 
 var {
@@ -23,11 +24,7 @@ module.exports = React.createClass({
 
   _renderToolbar: function() {
     return (
-      <View style={styles.toolbar}>
-        <Text style={styles.toolbarButton}></Text>
-        <Text style={styles.toolbarTitle}>Instagrannar</Text>
-        <Text style={styles.toolbarButton}>Search</Text>
-      </View>
+      <Toolbar />
     );
   },
 
