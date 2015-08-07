@@ -1,12 +1,12 @@
 var React = require('react-native');
 
 var Map          = require('./Map');
+var Search       = require('./Search');
 var PictureList  = require('./PictureList');
 var ToolbarStore = require('../stores/ToolbarStore');
 
 var {
   View,
-  Text,
   StyleSheet
 } = React;
 
@@ -47,9 +47,7 @@ module.exports = React.createClass({
 
   _renderSearch: function() {
     return (
-      <View style={styles.searchContainer}>
-        <Text>search...</Text>
-      </View>
+      <Search />
     );
   },
 
@@ -62,10 +60,6 @@ module.exports = React.createClass({
 });
 
 var styles = StyleSheet.create({
-    searchContainer: {
-      flexDirection: 'row',
-      height: 600
-    },
     pictureListContainer: {
       flexDirection:'row',
       height: 388,
