@@ -31,7 +31,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    console.log('rendering and', this.state);
     return (
       <View>
         <View style={styles.searchFieldContainer}>
