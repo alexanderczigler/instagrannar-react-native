@@ -53,10 +53,10 @@ module.exports = React.createClass({
       _onResultPress(item);
     }
     return (
-      <TouchableHighlight activeOpacity={0.8} onPress={onResultPress}>
+      <TouchableHighlight style={styles.listViewRow} activeOpacity={0.8} onPress={onResultPress}>
         <View>
-          <Text>{item.name}</Text>
-          <Text>{item.title}</Text>
+          <Text style={styles.searchResultName}>{item.name}</Text>
+          <Text style={styles.searchResultTitle}>{item.title}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -117,9 +117,18 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     height: 550
   },
+  searchResultName: {
+    fontWeight: 'bold'
+  },
+  searchResultTitle: {
+    fontSize: 12
+  },
   listView: {
     flex: 1,
     paddingTop: 0,
-    marginTop: 0,
+    marginTop: 0
+  },
+  listViewRow: {
+    marginBottom: 5
   }
 });
