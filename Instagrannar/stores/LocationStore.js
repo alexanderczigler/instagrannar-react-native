@@ -5,8 +5,9 @@ class LocationStore {
   constructor() {
     this.location = {
       latitude: 59.33640477604537,
-      longitude: 18.05935107885739
-    }
+      longitude: 18.05935107885739,
+      showUserLocation: true
+    };
 
     this.bindListeners({
       handleSetLocation: LocationActions.set,

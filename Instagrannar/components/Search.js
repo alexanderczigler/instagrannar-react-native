@@ -1,6 +1,8 @@
 var React = require('react-native');
 var RNLocalSearch = require('.././node_modules/react-native-localsearch/RNLocalSearch.ios.js');
 
+var LocationStore   = require('../stores/LocationStore');
+var ToolbarActions  = require('../actions/ToolbarActions');
 var LocationActions = require('../actions/LocationActions');
 
 var {
@@ -23,7 +25,8 @@ module.exports = React.createClass({
       }),
       searchText: {
         text: ''
-      }
+      },
+      location: LocationStore.state.location
     };
   },
 
@@ -70,10 +73,10 @@ module.exports = React.createClass({
 
   _doSearch: function() {
     const region = {
-      latitude: 30.2669444,
-      longitude: -97.7427778,
-      latitudeDelta: 0.1,
-      longitudeDelta: 0.1
+      latitude: this.state.location.latitude,
+      longitude: this.state.location.longitude,
+      latitudeDelta: 5,
+      longitudeDelta: 5
     };
 
     if (RNLocalSearch) {
@@ -93,8 +96,9 @@ module.exports = React.createClass({
   },
 
   _onResultPress: function(something) {
-    console.log('something is', something.location);
+    something.showUserLocation = false;
     LocationActions.set(something.location);
+    ToolbarActions.set({ currentView: 'Home' });
   }
 
 });
