@@ -1,7 +1,8 @@
 var React = require('react-native');
 
-var Map = require('./Map');
-var PictureList = require('./PictureList');
+var Map          = require('./Map');
+var PictureList  = require('./PictureList');
+var ToolbarStore = require('../stores/ToolbarStore');
 
 var {
   View,
