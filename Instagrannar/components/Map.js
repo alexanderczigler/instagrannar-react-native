@@ -22,12 +22,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var region = {
-      latitude: 59.33389,
-      longitude: 18.056288,
-      latitudeDelta: 1,
-      longitudeDelta: 1
-    };
     return (
       <MapView style={styles.container} showsUserLocation={true} onRegionChangeComplete={this._regionChange} />
     );
