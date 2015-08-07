@@ -16,6 +16,17 @@ class ToolbarStore {
   }
 
   handleSetToolbarState(toolbarState) {
+
+    if (toolbarState.currentView === 'Home') {
+      toolbarState.left = '';
+      toolbarState.right = 'Search';
+    }
+
+    if (toolbarState.currentView === 'Search') {
+      toolbarState.left = 'Back';
+      toolbarState.right = '';
+    }
+
     this.toolbarState = toolbarState;
   }
 
