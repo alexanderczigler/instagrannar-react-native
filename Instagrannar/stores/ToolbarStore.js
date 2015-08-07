@@ -4,6 +4,7 @@ var ToolbarActions = require('../actions/ToolbarActions');
 class ToolbarStore {
   constructor() {
     this.toolbarState = {
+      currentView: 'Home',
       left: '',
       right: 'Search'
     }
