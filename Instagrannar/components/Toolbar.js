@@ -1,6 +1,7 @@
 var React = require('react-native');
 
-var ToolbarStore = require('../stores/ToolbarStore');
+var ToolbarStore   = require('../stores/ToolbarStore');
+var ToolbarActions = require('../actions/ToolbarActions');
 
 var {
   Text,
@@ -15,25 +16,37 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    ToolbarStore.listen(this._changePosition);
+    ToolbarStore.listen(this._changeToolbarState);
   },
 
   componentWillUnmount: function () {
-    ToolbarStore.unlisten(this._changePosition);
+    ToolbarStore.unlisten(this._changeToolbarState);
   },
 
   render: function() {
     return (
       <View style={styles.toolbar}>
-        <Text style={styles.toolbarButton}>{this.state.left}</Text>
+        <Text style={styles.toolbarButton} onPress={this._handleLeftToolbarButton}>{this.state.left}</Text>
         <Text style={styles.toolbarTitle}>Instagrannar</Text>
-        <Text style={styles.toolbarButton}>{this.state.right}</Text>
+        <Text style={styles.toolbarButton} onPress={this._handleRightToolbarButton}>{this.state.right}</Text>
       </View>
     );
   },
 
+  _handleLeftToolbarButton(position, caption) {
+    if (this.state.left === 'Back') {
+      ToolbarActions.set({ currentView: 'Home' });
+    }
+  },
+
+  _handleRightToolbarButton(position, caption) {
+    if (this.state.right === 'Search') {
+      ToolbarActions.set({ currentView: 'Search' });
+    }
+  },
+
   _changeToolbarState: function(toolbarState) {
-    this.setState(toolbarState);
+    this.setState(toolbarState.toolbarState);
   }
 
 });
