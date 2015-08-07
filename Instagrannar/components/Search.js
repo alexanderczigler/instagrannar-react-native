@@ -34,7 +34,7 @@ module.exports = React.createClass({
     return (
       <View>
         <View style={styles.searchFieldContainer}>
-          <TextInput style={styles.searchField} onChangeText={(text) => this._onTextChange({text})} value={this.state.searchText.text} />
+          <TextInput style={styles.searchField} onChangeText={(text) => this._onTextChange({text})} />
         </View>
         <View style={styles.searchResultContainer}>
           <ListView
@@ -63,14 +63,16 @@ module.exports = React.createClass({
   },
 
   _onTextChange: function(text) {
-    this.setState({searchText: text}, function() {
-      if (text !== '') {
-        this._doSearch();
-      }
-    });
+    this.setState({searchText: text});
+    if (__TimeoutId > 0) {
+      clearTimeout(__TimeoutId);
+    }
+    __TimeoutId = setTimeout(this._doSearch, 1500);
   },
 
   _doSearch: function() {
+    __TimeoutId = 0;
+
     const region = {
       latitude: this.state.location.latitude,
       longitude: this.state.location.longitude,
