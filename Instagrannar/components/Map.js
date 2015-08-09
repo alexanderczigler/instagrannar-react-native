@@ -26,14 +26,13 @@ module.exports = React.createClass({
       var region = {
         latitude: this.state.location.latitude,
         longitude: this.state.location.longitude,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
       };
       return (
         <MapView style={styles.container} region={region} onRegionChangeComplete={this._regionChange} />
       );
     }
-
   },
 
   _regionChange: function(r) {
