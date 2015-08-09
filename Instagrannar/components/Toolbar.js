@@ -1,7 +1,8 @@
 var React = require('react-native');
 
-var ToolbarStore   = require('../stores/ToolbarStore');
-var ToolbarActions = require('../actions/ToolbarActions');
+var ToolbarStore        = require('../stores/ToolbarStore');
+var ToolbarActions      = require('../actions/ToolbarActions');
+var ViewConstraintStore = require('../stores/ViewConstraintStore');
 
 var {
   Text,
@@ -58,6 +59,7 @@ var styles = StyleSheet.create({
         paddingBottom: 10,
         marginBottom: 0,
         flexDirection:'row',
+        height: ViewConstraintStore.state.toolbarHeight
     },
     toolbarButton:{
         width: 65,

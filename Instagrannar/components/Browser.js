@@ -1,9 +1,12 @@
 var React = require('react-native');
 
-var Map          = require('./Map');
-var Search       = require('./Search');
-var PictureList  = require('./PictureList');
-var ToolbarStore = require('../stores/ToolbarStore');
+var Map                 = require('./Map');
+var Search              = require('./Search');
+var PictureList         = require('./PictureList');
+var ToolbarStore        = require('../stores/ToolbarStore');
+var ViewConstraintStore = require('../stores/ViewConstraintStore');
+var Dimensions          = require('Dimensions');
+var {width, height}     = Dimensions.get('window');
 
 var {
   View,
@@ -62,10 +65,10 @@ module.exports = React.createClass({
 var styles = StyleSheet.create({
     pictureListContainer: {
       flexDirection:'row',
-      height: 388,
+      height: height - ViewConstraintStore.state.toolbarHeight - ViewConstraintStore.state.mapHeight,
     },
     mapContainer: {
       flexDirection:'row',
-      height: 220
+      height: ViewConstraintStore.state.mapHeight
     }
 });
