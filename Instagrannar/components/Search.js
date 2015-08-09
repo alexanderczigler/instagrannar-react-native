@@ -113,11 +113,15 @@ var styles = StyleSheet.create({
     flex: 1,
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   searchResultContainer: {
     flexDirection: 'row',
-    height: 550
+    height: 550,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   searchResultName: {
     fontWeight: 'bold'
