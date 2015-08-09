@@ -79,6 +79,12 @@ module.exports = React.createClass({
 
   _changePosition: function(l) {
     this.setState(this.getInitialState());
+    if (!l.location.latitude) {
+      return;
+    }
+    if (!l.location.longitude) {
+      return;
+    }
     this.fetchData(l.location.latitude, l.location.longitude);
   },
 
