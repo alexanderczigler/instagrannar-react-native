@@ -52,6 +52,9 @@ module.exports = React.createClass({
     var onResultPress = function() {
       _onResultPress(item);
     }
+    if (item.title === null || item.title === '') {
+      return null;
+    }
     return (
       <TouchableHighlight style={styles.listViewRow} activeOpacity={0.8} onPress={onResultPress}>
         <View>
