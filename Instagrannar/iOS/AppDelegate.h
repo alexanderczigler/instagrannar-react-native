@@ -11,6 +11,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic) bool shouldRotate;
 @property (nonatomic, strong) UIWindow *window;
 
 @end

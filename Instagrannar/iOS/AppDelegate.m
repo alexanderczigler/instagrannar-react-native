@@ -57,4 +57,16 @@
   return YES;
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  NSUInteger orientations;
+  
+  orientations = UIInterfaceOrientationMaskPortrait;
+  
+  if (self.shouldRotate == YES) {
+    orientations = UIInterfaceOrientationMaskAllButUpsideDown;
+  }
+  
+  return orientations;
+}
+
 @end
