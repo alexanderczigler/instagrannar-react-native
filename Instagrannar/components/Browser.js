@@ -3,6 +3,7 @@ var React = require('react-native');
 var Map                 = require('./Map');
 var Search              = require('./Search');
 var PictureList         = require('./PictureList');
+var CircleOverlay       = require('./CircleOverlay');
 var ToolbarStore        = require('../stores/ToolbarStore');
 var ViewConstraintStore = require('../stores/ViewConstraintStore');
 var Dimensions          = require('Dimensions');
@@ -43,6 +44,7 @@ module.exports = React.createClass({
         </View>
         <View style={styles.mapContainer}>
           <Map />
+          <CircleOverlay />
         </View>
       </View>
     );
@@ -68,6 +70,7 @@ var styles = StyleSheet.create({
       height: height - ViewConstraintStore.state.toolbarHeight - ViewConstraintStore.state.mapHeight,
     },
     mapContainer: {
+      flex: 1,
       flexDirection:'row',
       height: ViewConstraintStore.state.mapHeight
     }
