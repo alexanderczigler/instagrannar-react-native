@@ -29,8 +29,12 @@ module.exports = React.createClass({
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       };
+      var annotations = [{
+        latitude: this.state.location.latitude,
+        longitude: this.state.location.longitude
+      }];
       return (
-        <MapView style={styles.container} region={region} onRegionChangeComplete={this._regionChange} />
+        <MapView style={styles.container} region={region} onRegionChangeComplete={this._regionChange} annotations={annotations} />
       );
     }
   },
