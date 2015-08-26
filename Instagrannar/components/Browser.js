@@ -72,6 +72,9 @@ var styles = StyleSheet.create({
     mapContainer: {
       flex: 1,
       flexDirection:'row',
-      height: ViewConstraintStore.state.mapHeight
+      height: ViewConstraintStore.state.mapHeight,
+      shadowColor: '#000000',
+      shadowOpacity: 0.5,
+      shadowRadius: 14
     }
 });
