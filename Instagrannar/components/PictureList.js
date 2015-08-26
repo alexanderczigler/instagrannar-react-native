@@ -10,7 +10,7 @@ var {
   StyleSheet
 } = React;
 
-var API_URL = 'http://instagrannar.se:3000/pictures?lng={lng}&lat={lat}&dst=350&max_ts=&min_ts=/-';
+var API_URL = 'http://instagrannar.se:3000/pictures?lng={lng}&lat={lat}&dst={distance}&max_ts=&min_ts=/-';
 
 module.exports = React.createClass({
 
@@ -32,10 +32,11 @@ module.exports = React.createClass({
     LocationStore.unlisten(this._changePosition);
   },
 
-  fetchData: function(lat, lng) {
+  fetchData: function(lat, lng, distance) {
     var url = API_URL;
     url = url.replace('{lng}', lng);
     url = url.replace('{lat}', lat);
+    url = url.replace('{distance}', distance);
     fetch(url)
       .then((response) => response.json())
       .then((responseData) => {
@@ -85,7 +86,16 @@ module.exports = React.createClass({
     if (!l.location.longitude) {
       return;
     }
-    this.fetchData(l.location.latitude, l.location.longitude);
+
+    var distance = parseInt(l.location.latitudeDelta * 10000);
+
+    if (distance > 5000) {
+      distance = 5000;
+    } else if (distance < 100) {
+      distance = 100;
+    }
+
+    this.fetchData(l.location.latitude, l.location.longitude, distance);
   },
 
 });
