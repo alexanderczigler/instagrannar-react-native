@@ -82,7 +82,7 @@ module.exports = React.createClass({
       latitudeDelta: 5,
       longitudeDelta: 5
     };
-
+    console.log(RNLocalSearch, this.state.searchText.text);
     if (RNLocalSearch) {
       RNLocalSearch.searchForLocations(this.state.searchText.text, region, this._handleResponse);
     }
