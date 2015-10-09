@@ -11,7 +11,7 @@ var {
 var Instagrannar = React.createClass({
 
   componentDidMount: function () {
-    Orientation.shouldRotate(0); // Disable orientation.
+    Orientation.lockToPortrait();
   },
 
   render: function () {

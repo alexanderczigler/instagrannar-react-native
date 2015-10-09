@@ -23,8 +23,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		C2033CE81BC82959005D5E53 /* RCTOrientation in Frameworks */ = {isa = PBXBuildFile; fileRef = C2033CE71BC82959005D5E53 /* RCTOrientation */; };
 		C2611D9F1BC824BA00972C28 /* libRNLocalSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2611D9E1BC824B000972C28 /* libRNLocalSearch.a */; };
-		C2611DA11BC828AF00972C28 /* RCTOrientation in Resources */ = {isa = PBXBuildFile; fileRef = C2611DA01BC828AF00972C28 /* RCTOrientation */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,8 +136,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		C2033CE71BC82959005D5E53 /* RCTOrientation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RCTOrientation; path = "../node_modules/react-native-orientation/RCTOrientation"; sourceTree = "<group>"; };
 		C2611D991BC824B000972C28 /* RNLocalSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLocalSearch.xcodeproj; path = "../node_modules/react-native-localsearch/RNLocalSearch.xcodeproj"; sourceTree = "<group>"; };
-		C2611DA01BC828AF00972C28 /* RCTOrientation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RCTOrientation; path = "../node_modules/react-native-orientation/RCTOrientation"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2033CE81BC82959005D5E53 /* RCTOrientation in Frameworks */,
 				C2611D9F1BC824BA00972C28 /* libRNLocalSearch.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -300,7 +301,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C2611DA01BC828AF00972C28 /* RCTOrientation */,
+				C2033CE71BC82959005D5E53 /* RCTOrientation */,
 				C2611D991BC824B000972C28 /* RNLocalSearch.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* Instagrannar */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -544,7 +545,6 @@
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				C2611DA11BC828AF00972C28 /* RCTOrientation in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
