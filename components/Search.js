@@ -34,7 +34,12 @@ module.exports = React.createClass({
     return (
       <View>
         <View style={styles.searchFieldContainer}>
-          <TextInput style={styles.searchField} onChangeText={(text) => this._onTextChange({text})} />
+          <TextInput
+          style={styles.searchField}
+          onChangeText={(text) => this._onTextChange({text})}
+          placeholder='Search...'
+          placeholderTextColor='#606060'
+          />
         </View>
         <View style={styles.searchResultContainer}>
           <ListView
