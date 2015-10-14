@@ -24,8 +24,6 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C2611D9F1BC824BA00972C28 /* libRNLocalSearch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2611D9E1BC824B000972C28 /* libRNLocalSearch.a */; };
-		C28F3A311BCEDB68008C197A /* Orientation.h in Frameworks */ = {isa = PBXBuildFile; fileRef = C28F3A2F1BCEDB68008C197A /* Orientation.h */; };
-		C28F3A321BCEDB68008C197A /* Orientation.m in Frameworks */ = {isa = PBXBuildFile; fileRef = C28F3A301BCEDB68008C197A /* Orientation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,8 +136,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		C2611D991BC824B000972C28 /* RNLocalSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNLocalSearch.xcodeproj; path = "../node_modules/react-native-localsearch/RNLocalSearch.xcodeproj"; sourceTree = "<group>"; };
-		C28F3A2F1BCEDB68008C197A /* Orientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Orientation.h; path = "../node_modules/react-native-orientation/RCTOrientation/Orientation.h"; sourceTree = "<group>"; };
-		C28F3A301BCEDB68008C197A /* Orientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Orientation.m; path = "../node_modules/react-native-orientation/RCTOrientation/Orientation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C28F3A311BCEDB68008C197A /* Orientation.h in Frameworks */,
-				C28F3A321BCEDB68008C197A /* Orientation.m in Frameworks */,
 				C2611D9F1BC824BA00972C28 /* libRNLocalSearch.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -279,8 +273,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				C28F3A2F1BCEDB68008C197A /* Orientation.h */,
-				C28F3A301BCEDB68008C197A /* Orientation.m */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
