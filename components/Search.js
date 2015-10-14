@@ -1,8 +1,8 @@
 var React = require('react-native');
 var RNLocalSearch = require('.././node_modules/react-native-localsearch/RNLocalSearch.ios.js');
 
-var LocationStore   = require('../stores/LocationStore');
-var ToolbarActions  = require('../actions/ToolbarActions');
+var LocationStore = require('../stores/LocationStore');
+var ToolbarActions = require('../actions/ToolbarActions');
 var LocationActions = require('../actions/LocationActions');
 
 var {
@@ -18,10 +18,10 @@ var __TimeoutId = 0;
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1 !== row2
       }),
       searchText: {
         text: ''
@@ -30,7 +30,7 @@ module.exports = React.createClass({
     };
   },
 
-  render: function() {
+  render: function () {
     return (
       <View>
         <View style={styles.searchFieldContainer}>
@@ -52,11 +52,11 @@ module.exports = React.createClass({
     );
   },
 
-  _renderRow: function(item) {
+  _renderRow: function (item) {
     var _onResultPress = this._onResultPress;
-    var onResultPress = function() {
+    var onResultPress = function () {
       _onResultPress(item);
-    }
+    };
     if (item.title === null || item.title === '') {
       return null;
     }
@@ -70,7 +70,7 @@ module.exports = React.createClass({
     );
   },
 
-  _onTextChange: function(text) {
+  _onTextChange: function (text) {
     this.setState({searchText: text});
     if (__TimeoutId > 0) {
       clearTimeout(__TimeoutId);
@@ -78,7 +78,7 @@ module.exports = React.createClass({
     __TimeoutId = setTimeout(this._doSearch, 1500);
   },
 
-  _doSearch: function() {
+  _doSearch: function () {
     __TimeoutId = 0;
 
     const region = {
@@ -93,18 +93,17 @@ module.exports = React.createClass({
     }
   },
 
-  _handleResponse: function(err, resp) {
+  _handleResponse: function (err, resp) {
     if (err) {
       console.log(err);
-    }
-    else {
+    } else {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(resp)
       });
     }
   },
 
-  _onResultPress: function(something) {
+  _onResultPress: function (something) {
     something.showUserLocation = false;
     LocationActions.set(something.location);
     ToolbarActions.set({ currentView: 'Home' });
