@@ -5,6 +5,8 @@ var LocationStore = require('../stores/LocationStore');
 var ToolbarActions = require('../actions/ToolbarActions');
 var LocationActions = require('../actions/LocationActions');
 
+var Message = require('./Message');
+
 var {
   Text,
   View,
@@ -33,14 +35,34 @@ module.exports = React.createClass({
   render: function () {
     return (
       <View>
-        <View style={styles.searchFieldContainer}>
-          <TextInput
-          style={styles.searchField}
-          onChangeText={(text) => this._onTextChange({text})}
-          placeholder='Search...'
-          placeholderTextColor='#606060'
-          />
+        {this._renderSearchBox()}
+        {this._renderSearchResults()}
+      </View>
+    );
+  },
+
+  _renderSearchBox: function () {
+    return (
+      <View style={styles.searchFieldContainer}>
+        <TextInput
+        style={styles.searchField}
+        onChangeText={(text) => this._onTextChange({text})}
+        placeholder='Search...'
+        placeholderTextColor='#606060'
+        />
+      </View>
+    );
+  },
+
+  _renderSearchResults: function () {
+    if (true) {
+      return (
+        <View style={styles.searchResultContainer}>
+          <Message header={'Searching'} body={'Please wait...'} />
         </View>
+      );
+    } else {
+      return (
         <View style={styles.searchResultContainer}>
           <ListView
             dataSource={this.state.dataSource}
@@ -48,8 +70,8 @@ module.exports = React.createClass({
             style={styles.listView}
             />
         </View>
-      </View>
-    );
+      );
+    }
   },
 
   _renderRow: function (item) {
