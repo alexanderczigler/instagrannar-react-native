@@ -17,6 +17,8 @@ var {
 } = React;
 
 var __TimeoutId = 0;
+var __SearchComplete = false;
+var __HasSearchError = false;
 
 module.exports = React.createClass({
 
@@ -55,13 +57,7 @@ module.exports = React.createClass({
   },
 
   _renderSearchResults: function () {
-    if (true) {
-      return (
-        <View style={styles.searchResultContainer}>
-          <Message header={'Searching'} body={'Please wait...'} />
-        </View>
-      );
-    } else {
+    if (__SearchComplete && !__HasSearchError) {
       return (
         <View style={styles.searchResultContainer}>
           <ListView
@@ -70,6 +66,32 @@ module.exports = React.createClass({
             style={styles.listView}
             />
         </View>
+      );
+    } else {
+      return (
+        <View style={styles.searchResultContainer}>
+          {this._renderSearchInformation()}
+        </View>
+      );
+    }
+  },
+
+  _renderSearchInformation: function () {
+    if (this.state.searchText.text === '') {
+      return (
+        <Message header={'Location search'} body={'Here you can search for places, restaurants and other points of interest.'} />
+      );
+    }
+
+    if (__HasSearchError) {
+      return (
+        <Message header={'Nothing found'} body={'Sorry, no results were found. Try searching for something else.'} />
+      );
+    }
+
+    if (this.state.searchText.text !== '') {
+      return (
+        <Message header={'Searching'} body={'Please wait...'} />
       );
     }
   },
@@ -93,7 +115,9 @@ module.exports = React.createClass({
   },
 
   _onTextChange: function (text) {
+    __SearchComplete = false;
     this.setState({searchText: text});
+
     if (__TimeoutId > 0) {
       clearTimeout(__TimeoutId);
     }
@@ -116,9 +140,14 @@ module.exports = React.createClass({
   },
 
   _handleResponse: function (err, resp) {
+    __SearchComplete = true;
+
     if (err) {
+      __HasSearchError = true;
+      this.setState();
       console.log(err);
     } else {
+      __HasSearchError = false;
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(resp)
       });
