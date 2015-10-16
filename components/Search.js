@@ -1,9 +1,11 @@
 var React = require('react-native');
 var RNLocalSearch = require('.././node_modules/react-native-localsearch/RNLocalSearch.ios.js');
 
-var LocationStore   = require('../stores/LocationStore');
-var ToolbarActions  = require('../actions/ToolbarActions');
+var LocationStore = require('../stores/LocationStore');
+var ToolbarActions = require('../actions/ToolbarActions');
 var LocationActions = require('../actions/LocationActions');
+
+var Message = require('./Message');
 
 var {
   Text,
@@ -15,13 +17,15 @@ var {
 } = React;
 
 var __TimeoutId = 0;
+var __SearchComplete = false;
+var __HasSearchError = false;
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1 !== row2
       }),
       searchText: {
         text: ''
@@ -30,17 +34,31 @@ module.exports = React.createClass({
     };
   },
 
-  render: function() {
+  render: function () {
     return (
       <View>
-        <View style={styles.searchFieldContainer}>
-          <TextInput
-          style={styles.searchField}
-          onChangeText={(text) => this._onTextChange({text})}
-          placeholder='Search...'
-          placeholderTextColor='#606060'
-          />
-        </View>
+        {this._renderSearchBox()}
+        {this._renderSearchResults()}
+      </View>
+    );
+  },
+
+  _renderSearchBox: function () {
+    return (
+      <View style={styles.searchFieldContainer}>
+        <TextInput
+        style={styles.searchField}
+        onChangeText={(text) => this._onTextChange({text})}
+        placeholder='Search...'
+        placeholderTextColor='#606060'
+        />
+      </View>
+    );
+  },
+
+  _renderSearchResults: function () {
+    if (__SearchComplete && !__HasSearchError) {
+      return (
         <View style={styles.searchResultContainer}>
           <ListView
             dataSource={this.state.dataSource}
@@ -48,15 +66,41 @@ module.exports = React.createClass({
             style={styles.listView}
             />
         </View>
-      </View>
-    );
+      );
+    } else {
+      return (
+        <View style={styles.searchResultContainer}>
+          {this._renderSearchInformation()}
+        </View>
+      );
+    }
   },
 
-  _renderRow: function(item) {
-    var _onResultPress = this._onResultPress;
-    var onResultPress = function() {
-      _onResultPress(item);
+  _renderSearchInformation: function () {
+    if (this.state.searchText.text === '') {
+      return (
+        <Message header={'Location search'} body={'Here you can search for places, restaurants and other points of interest.'} />
+      );
     }
+
+    if (__HasSearchError) {
+      return (
+        <Message header={'Nothing found'} body={'Sorry, no results were found. Try searching for something else.'} />
+      );
+    }
+
+    if (this.state.searchText.text !== '') {
+      return (
+        <Message header={'Searching'} body={'Please wait...'} />
+      );
+    }
+  },
+
+  _renderRow: function (item) {
+    var _onResultPress = this._onResultPress;
+    var onResultPress = function () {
+      _onResultPress(item);
+    };
     if (item.title === null || item.title === '') {
       return null;
     }
@@ -70,15 +114,17 @@ module.exports = React.createClass({
     );
   },
 
-  _onTextChange: function(text) {
+  _onTextChange: function (text) {
+    __SearchComplete = false;
     this.setState({searchText: text});
+
     if (__TimeoutId > 0) {
       clearTimeout(__TimeoutId);
     }
     __TimeoutId = setTimeout(this._doSearch, 1500);
   },
 
-  _doSearch: function() {
+  _doSearch: function () {
     __TimeoutId = 0;
 
     const region = {
@@ -93,18 +139,22 @@ module.exports = React.createClass({
     }
   },
 
-  _handleResponse: function(err, resp) {
+  _handleResponse: function (err, resp) {
+    __SearchComplete = true;
+
     if (err) {
+      __HasSearchError = true;
+      this.setState();
       console.log(err);
-    }
-    else {
+    } else {
+      __HasSearchError = false;
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(resp)
       });
     }
   },
 
-  _onResultPress: function(something) {
+  _onResultPress: function (something) {
     something.showUserLocation = false;
     LocationActions.set(something.location);
     ToolbarActions.set({ currentView: 'Home' });
