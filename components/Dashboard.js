@@ -9,7 +9,7 @@ var {
 
 module.exports = React.createClass({
 
-  render: function() {
+  render: function () {
     return (
       <View>
         {this._renderToolbar()}
@@ -18,13 +18,13 @@ module.exports = React.createClass({
     );
   },
 
-  _renderToolbar: function() {
+  _renderToolbar: function () {
     return (
       <Toolbar />
     );
   },
 
-  _renderBrowser: function() {
+  _renderBrowser: function () {
     return (
       <Browser />
     );

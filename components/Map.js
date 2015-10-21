@@ -1,6 +1,6 @@
 var React = require('react-native');
 
-var LocationStore   = require('../stores/LocationStore');
+var LocationStore = require('../stores/LocationStore');
 var LocationActions = require('../actions/LocationActions');
 
 var {
@@ -12,22 +12,21 @@ var __TimeoutId = 0;
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return LocationStore.state;
   },
 
-  render: function() {
+  render: function () {
     if (this.state.location.showUserLocation) {
       return (
         <MapView style={styles.container} showsUserLocation={true} onRegionChangeComplete={this._regionChange} />
       );
-    }
-    else {
+    } else {
       var region = {
         latitude: this.state.location.latitude,
         longitude: this.state.location.longitude,
         latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+        longitudeDelta: 0.01
       };
       var annotations = [{
         latitude: this.state.location.latitude,
@@ -39,7 +38,7 @@ module.exports = React.createClass({
     }
   },
 
-  _regionChange: function(r) {
+  _regionChange: function (r) {
     if (__TimeoutId > 0) {
       clearTimeout(__TimeoutId);
     }
@@ -55,5 +54,5 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row'
-  },
+  }
 });

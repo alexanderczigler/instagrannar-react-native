@@ -1,8 +1,8 @@
 var React = require('react-native');
 
-var PixelRatio          = require('PixelRatio');
-var Dimensions          = require('Dimensions');
-var {width, height}     = Dimensions.get('window');
+var PixelRatio = require('PixelRatio');
+var Dimensions = require('Dimensions');
+var {width, height} = Dimensions.get('window');
 var ViewConstraintStore = require('../stores/ViewConstraintStore');
 
 var __D = 64;
@@ -13,10 +13,10 @@ var {
 } = React;
 
 module.exports = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <View style={styles.circle} />
-    )
+    );
   }
 });
 

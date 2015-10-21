@@ -1,14 +1,14 @@
-var React           = require('react-native');
+var React = require('react-native');
 
 var {
   StyleSheet,
   Text,
-  View,
+  View
 } = React;
 
 module.exports = React.createClass({
 
-  render: function() {
+  render: function () {
     return (
       <View style={styles.loadingView}>
         <Text style={styles.loadingText}>Loading...</Text>

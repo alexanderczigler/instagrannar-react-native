@@ -1,13 +1,13 @@
 var React = require('react-native');
 
-var Map                 = require('./Map');
-var Search              = require('./Search');
-var PictureList         = require('./PictureList');
-var CircleOverlay       = require('./CircleOverlay');
-var ToolbarStore        = require('../stores/ToolbarStore');
+var Map = require('./Map');
+var Search = require('./Search');
+var PictureList = require('./PictureList');
+var CircleOverlay = require('./CircleOverlay');
+var ToolbarStore = require('../stores/ToolbarStore');
 var ViewConstraintStore = require('../stores/ViewConstraintStore');
-var Dimensions          = require('Dimensions');
-var {width, height}     = Dimensions.get('window');
+var Dimensions = require('Dimensions');
+var {width, height} = Dimensions.get('window');
 
 var {
   View,
@@ -16,11 +16,11 @@ var {
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return ToolbarStore.state.toolbarState;
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     ToolbarStore.listen(this._changeToolbarState);
   },
 
@@ -28,7 +28,7 @@ module.exports = React.createClass({
     ToolbarStore.unlisten(this._changeToolbarState);
   },
 
-  render: function() {
+  render: function () {
     if (this.state.currentView === 'Search') {
       return this._renderSearch();
     }
@@ -36,7 +36,7 @@ module.exports = React.createClass({
     return this._renderListAndMap();
   },
 
-  _renderListAndMap: function() {
+  _renderListAndMap: function () {
     return (
       <View>
         <View style={styles.pictureListContainer}>
@@ -50,31 +50,31 @@ module.exports = React.createClass({
     );
   },
 
-  _renderSearch: function() {
+  _renderSearch: function () {
     return (
       <Search />
     );
   },
 
-  _changeToolbarState: function(toolbarState) {
+  _changeToolbarState: function (toolbarState) {
     this.setState(toolbarState.toolbarState, function () {
-      //console.log('setState callback!', this.state);
+      // console.log('setState callback!', this.state);
     });
   }
 
 });
 
 var styles = StyleSheet.create({
-    pictureListContainer: {
-      flexDirection:'row',
-      height: height - ViewConstraintStore.state.toolbarHeight - ViewConstraintStore.state.mapHeight,
-    },
-    mapContainer: {
-      flex: 1,
-      flexDirection:'row',
-      height: ViewConstraintStore.state.mapHeight,
-      shadowColor: '#000000',
-      shadowOpacity: 0.5,
-      shadowRadius: 14
-    }
+  pictureListContainer: {
+    flexDirection: 'row',
+    height: height - ViewConstraintStore.state.toolbarHeight - ViewConstraintStore.state.mapHeight
+  },
+  mapContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    height: ViewConstraintStore.state.mapHeight,
+    shadowColor: '#000000',
+    shadowOpacity: 0.5,
+    shadowRadius: 14
+  }
 });
