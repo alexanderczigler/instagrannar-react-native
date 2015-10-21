@@ -13,6 +13,8 @@ var {
 
 module.exports = React.createClass({
 
+  // TODO: picture.likes.count
+
   render: function () {
     var picture = this.props.picture;
     var _onPicturePress = this._onPicturePress;
@@ -20,7 +22,7 @@ module.exports = React.createClass({
       _onPicturePress(picture);
     };
     return (
-      <TouchableHighlight activeOpacity={0.8} onPress={onPicturePress}>
+      <TouchableHighlight activeOpacity={0.8} onPress={onPicturePress} underlayColor={'white'}>
         <View style={styles.container}>
           <Image
               source={{uri: picture.images.standard_resolution.url}} style={styles.thumbnail} />
@@ -54,6 +56,7 @@ module.exports = React.createClass({
     this.setState({
       selectedPicture: picture
     });
+    console.log('Picture was clicked...');
   }
 
 });
