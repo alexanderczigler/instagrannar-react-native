@@ -1,9 +1,9 @@
-var React             = require('react-native');
+var React = require('react-native');
 
-var LocationStore     = require('../stores/LocationStore');
-var PictureListRow    = require('./PictureListRow');
-var Message           = require('./Message');
-var LoadingIndicator  = require('./LoadingIndicator');
+var LocationStore = require('../stores/LocationStore');
+var PictureListRow = require('./PictureListRow');
+var Message = require('./Message');
+var LoadingIndicator = require('./LoadingIndicator');
 
 var {
   ListView,
@@ -14,17 +14,17 @@ var API_URL = 'http://instagrannar.se:3000/pictures?lng={lng}&lat={lat}&dst={dis
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => row1 !== row2
       }),
       loaded: false,
       selectedPicture: {}
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     LocationStore.listen(this._changePosition);
   },
 
@@ -32,7 +32,7 @@ module.exports = React.createClass({
     LocationStore.unlisten(this._changePosition);
   },
 
-  fetchData: function(lat, lng, distance) {
+  fetchData: function (lat, lng, distance) {
     var url = API_URL;
     url = url.replace('{lng}', lng);
     url = url.replace('{lat}', lat);
@@ -42,7 +42,7 @@ module.exports = React.createClass({
       .then((responseData) => {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(responseData.data),
-          loaded: true,
+          loaded: true
         });
       })
       .done();
@@ -50,7 +50,7 @@ module.exports = React.createClass({
 
   render: function () {
     if (this.state.loaded) {
-      if (this.state.dataSource._cachedRowCount == 0) {
+      if (this.state.dataSource._cachedRowCount === 0) {
         var header = 'Nothing found';
         var body = 'Trying changing the zoom or moving the map to another location.';
         return (
@@ -64,8 +64,7 @@ module.exports = React.createClass({
           style={styles.listView}
           />
       );
-    }
-    else {
+    } else {
       return (
         <LoadingIndicator />
       );
@@ -78,7 +77,7 @@ module.exports = React.createClass({
     );
   },
 
-  _changePosition: function(l) {
+  _changePosition: function (l) {
     this.setState(this.getInitialState());
     if (!l.location.latitude) {
       return;
@@ -87,7 +86,7 @@ module.exports = React.createClass({
       return;
     }
 
-    var distance = parseInt(l.location.latitudeDelta * 10000);
+    var distance = parseInt(l.location.latitudeDelta * 10000, 10);
 
     if (distance > 5000) {
       distance = 5000;
@@ -96,7 +95,7 @@ module.exports = React.createClass({
     }
 
     this.fetchData(l.location.latitude, l.location.longitude, distance);
-  },
+  }
 
 });
 
@@ -104,6 +103,6 @@ var styles = StyleSheet.create({
   listView: {
     flex: 1,
     paddingTop: 0,
-    marginTop: 0,
+    marginTop: 0
   }
 });

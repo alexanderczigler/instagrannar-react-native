@@ -1,24 +1,24 @@
-var React            = require('react-native');
-var moment           = require('moment');
-var Dimensions       = require('Dimensions');
-var {width, height}  = Dimensions.get('window');
+var React = require('react-native');
+var moment = require('moment');
+var Dimensions = require('Dimensions');
+var {width, height} = Dimensions.get('window');
 
 var {
   View,
   Text,
   Image,
   StyleSheet,
-  TouchableHighlight,
+  TouchableHighlight
 } = React;
 
 module.exports = React.createClass({
 
-  render: function() {
+  render: function () {
     var picture = this.props.picture;
     var _onPicturePress = this._onPicturePress;
     var onPicturePress = function () {
       _onPicturePress(picture);
-    }
+    };
     return (
       <TouchableHighlight activeOpacity={0.8} onPress={onPicturePress}>
         <View style={styles.container}>
@@ -67,7 +67,7 @@ var styles = StyleSheet.create({
   },
   thumbnail: {
     width: width,
-    height: width,
+    height: width
   },
   title: {
     fontSize: 16,
@@ -82,7 +82,7 @@ var styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   ts: {
     fontSize: 14,
