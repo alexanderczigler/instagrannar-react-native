@@ -6,18 +6,9 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "alt": "^0.17.4",
+    "alt": "^0.17.9",
     "moment": "^2.10.6",
-    "react-native": "^0.11.4",
-    "react-native-localsearch": {
-      "version": "0.0.2",
-      "from": "react-native-localsearch@0.0.2",
-      "dependencies": {
-        "react-native": {
-          "version": "0.8.0",
-          "from": "react-native@0.8.0"
-        }
-      }
-    }
+    "react-native": "^0.16.0",
+    "react-native-localsearch": "0.0.3"
   }
 }
