@@ -126,7 +126,6 @@ module.exports = React.createClass({
 
   _doSearch: function () {
     __TimeoutId = 0;
-
     const region = {
       latitude: this.state.location.latitude,
       longitude: this.state.location.longitude,
