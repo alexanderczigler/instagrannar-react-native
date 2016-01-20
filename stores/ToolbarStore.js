@@ -5,7 +5,7 @@ class ToolbarStore {
   constructor() {
     this.toolbarState = {
       currentView: 'Home',
-      left: 'Home',
+      left: '',
       right: 'Search'
     }
 

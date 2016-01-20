@@ -50,6 +50,7 @@ module.exports = React.createClass({
 
     if (this.state.left === 'Home') {
       LocationActions.set(__home);
+      ToolbarActions.set({ currentView: 'Home' });
     }
   },
 
