@@ -2,10 +2,10 @@ var alt = require('../alt');
 
 class ToolbarActions {
   get() {
-    this.dispatch();
+    return
   }
   set(toolbarState) {
-    this.dispatch(toolbarState);
+    return toolbarState
   }
 }
 

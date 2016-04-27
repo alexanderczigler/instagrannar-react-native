@@ -2,10 +2,10 @@ var alt = require('../alt');
 
 class LocationActions {
   get() {
-    this.dispatch();
+    return
   }
   set(location) {
-    this.dispatch(location);
+    return location
   }
 }
 
