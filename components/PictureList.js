@@ -10,7 +10,7 @@ var {
   StyleSheet
 } = React;
 
-var API_URL = 'http://instagrannar.se:3000/pictures?lng={lng}&lat={lat}&dst={distance}&max_ts=&min_ts=/-';
+var API_URL = 'http://api.instagrannar.se/pictures?lng={lng}&lat={lat}&dst={distance}&max_ts=&min_ts=/-';
 
 module.exports = React.createClass({
 
